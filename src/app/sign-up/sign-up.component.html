@@ -1,0 +1,71 @@
+<form [formGroup]="register" (ngSubmit)="onSubmit()">
+  <fieldset>
+    <label for="firstname">firstname</label>
+    <input
+      type="text"
+      formControlName="firstname"
+      id="firstname"
+      required
+      minlength="3"
+      maxlength="16"
+    />
+  </fieldset>
+  <span
+    *ngIf="register.controls.firstname.value && register.controls.firstname.errors?.['required']"
+    >Le prénom est requis</span
+  >
+  <span
+    *ngIf="
+      register.controls.firstname.value &&
+      register.controls.firstname.hasError('minlength')
+    "
+    >Le prénom doit comporter au moins 3 caractères</span
+  >
+  <span
+    *ngIf="
+      register.controls.firstname.value &&
+      register.controls.firstname.hasError('maxlength')
+    "
+    >Le prénom ne doit pas dépasser 15 caractères</span
+  >
+  <fieldset>
+    <label for="lastname">lastname</label>
+    <input
+      type="text"
+      formControlName="lastname"
+      id="lastname"
+      required
+      minlength="3"
+      maxlength="16"
+    />
+  </fieldset>
+  <span
+    *ngIf="register.controls.lastname.value && register.controls.lastname.errors?.['required']"
+    >Le nom est requis</span
+  >
+  <span
+    *ngIf="register.controls.lastname.value && register.controls.lastname.errors?.['minlength']"
+    >Le nom doit comporter au moins 3 caractères</span
+  >
+  <span
+    *ngIf="register.controls.lastname.value && register.controls.lastname.errors?.['maxlength']"
+    >Le nom ne doit pas dépasser 15 caractères</span
+  >
+  <fieldset>
+    <label for="email">email</label>
+    <input type="email" formControlName="email" id="email" required />
+  </fieldset>
+  <span
+    *ngIf="register.controls.email.value && register.controls.email.errors?.['pattern']"
+    >L'email est invalide</span
+  >
+  <span
+    *ngIf="register.controls.email.value && register.controls.email.errors?.['required']"
+    >L'email est requis</span
+  >
+  <fieldset>
+    <label for="password">password</label>
+    <input type="password" id="password" formControlName="password" />
+  </fieldset>
+  <button type="submit">Register</button>
+</form>
